@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, ShoppingCart } from 'lucide-react';
+import logo from '../assets/logoAnantvaa.jpg';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,12 +9,12 @@ const Navbar = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <nav className="bg-white shadow-md sticky top-0 z-50">
+      <nav className="bg-[rgb(239,215,167)] shadow-md sticky top-0 z-50 w-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Left side */}
+
           <div className="flex items-center space-x-8">
-            <Link to="/" className="text-2xl font-bold text-indigo-600">MyStore</Link>
+            <Link to="/" className="text-2xl font-bold text-indigo-600"><img src={logo} alt="Logo" className='h-16' /></Link>
             <div className="hidden md:flex space-x-6">
               <Link to="/" className="text-gray-700 hover:text-indigo-600">Home</Link>
               <Link to="/products" className="text-gray-700 hover:text-indigo-600">Products</Link>
@@ -24,11 +25,11 @@ const Navbar = () => {
 
           {/* Right side */}
           <div className="hidden md:flex items-center space-x-6">
-            <input
+            {/* <input
               type="text"
               placeholder="Search..."
               className="border border-gray-300 rounded-lg px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            />
+            /> */}
             <Link to="/cart" className="text-gray-700 hover:text-indigo-600 flex items-center">
               <ShoppingCart size={20} />
             </Link>

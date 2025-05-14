@@ -37,7 +37,7 @@ const Signup = () => {
   }
 
   return (
-    <div className="flex items-center justify-center w-screen min-h-screen w-auto bg-gray-900 p-5px">
+    <div className="flex items-center justify-center w-screen min-h-screen bg-gray-900 p-5px">
       <div className=" bg-white p-8 rounded-lg shadow-lg">
         <h1 className="text-3xl font-bold mb-6 text-center text-black">Sign up</h1>
         <form onSubmit={handleSignup} className="space-y-4 bg-yellow-500">
@@ -63,7 +63,7 @@ const Signup = () => {
             type="email"
             name="email"
             placeholder="E-mail*"
-            className="border w-full p-2 rounded p-[10px]"
+            className="border w-full rounded p-[10px]"
             required
             onChange={handleChange}
           />
@@ -71,7 +71,7 @@ const Signup = () => {
             type="password"
             name="password"
             placeholder="Create password*"
-            className="border w-full p-2 rounded p-[10px]"
+            className="border w-full rounded p-[10px]"
             required
             onChange={handleChange}
             minLength={8}
