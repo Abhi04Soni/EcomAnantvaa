@@ -89,7 +89,7 @@ const Signup = () => {
           <p className="text-sm mt-2 text-center">
             Already a member?{' '}
             <a href="/login" className="underline text-blue-600">
-              Sign in
+              Login
             </a>
           </p>
         </form>
