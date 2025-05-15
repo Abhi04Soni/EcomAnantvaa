@@ -1,12 +1,23 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { data, Link } from 'react-router-dom';
 import { Menu, X, ShoppingCart } from 'lucide-react';
 import logo from '../assets/logoAnantvaa.jpg';
+import { Contact } from 'lucide-react';
+import { supabase } from '../utils/SupabaseClient';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleMenu = () => setIsOpen(!isOpen);
+    const toggleMenu = () => setIsOpen(!isOpen);
+    
+    const getUser = async() => {
+        const { data: { user }, error } = await supabase.auth.getUser();
+      console.log(data, error);
+    }
+    useEffect(() => {
+      getUser();
+    }, []);
+
 
   return (
       <nav className="bg-[rgb(239,215,167)] shadow-md sticky top-0 z-50 w-full">
@@ -66,13 +77,14 @@ const Navbar = () => {
             <div className="flex items-center justify-between mt-2">
               <Link to="/cart" className="text-gray-700 hover:text-indigo-600 flex items-center">
                 <ShoppingCart size={20} />
-              </Link>
-              <Link
+                          </Link>
+                          { user ? <Contact size={20}/> : <Link
                 to="/login"
                 className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition"
               >
                 Login
-              </Link>
+              </Link>}
+             
             </div>
           </div>
         </div>

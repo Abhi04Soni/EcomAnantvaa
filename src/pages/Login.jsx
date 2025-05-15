@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { supabase } from '../utils/SupabaseClient';
+import { useNavigate } from 'react-router-dom';
+
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -18,7 +20,8 @@ const LoginPage = () => {
     if (error) {
       setMessage(error.message);
     } else {
-      setMessage('Login successful!');
+        setMessage('Login successful!');
+        navigate('/'); 
     }
   };
 
