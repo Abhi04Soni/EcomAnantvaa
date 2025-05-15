@@ -43,7 +43,7 @@ const Carousel = () => {
   }, [currentIndex]);
 
   return (
-    <div className="relative w-screen mx-auto overflow-hidden shadow-lg hover:shadow-2xl h-[80vh] sm:h-[60vh] md:h-[70vh]">
+    <div className="relative w-full mx-auto overflow-hidden shadow-lg hover:shadow-2xl h-[80vh] sm:h-[60vh] md:h-[70vh]">
       <div
         ref={carouselRef}
         className="flex transition-transform duration-700 ease-in-out"

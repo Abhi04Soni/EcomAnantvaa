@@ -7,7 +7,7 @@ export default function Story () {
   return (
     <>
       <Navbar />
-      <img src={image1} className='w-screen h-full' alt='' />
+      <img src={image1} className='w-full h-full' alt='' />
       <div>
         {' '}
         <div className='min-h-screen flex flex-col items-center justify-center bg-gray-50 px-4 py-12'>
@@ -23,14 +23,14 @@ export default function Story () {
             </p>
             <button
               className='mt-4 px-6 py-3 text-lg'
-              onClick={() => (window.location.href = '/shop')}
+              onClick={() => (window.location.href = '/products')}
             >
               Shop Now
             </button>
           </div>
         </div>
       </div>
-      <img src={image1} className='w-screen h-full' alt='' />
+      <img src={image1} className='w-full h-full' alt='' />
       <Footer />
     </>
   )
