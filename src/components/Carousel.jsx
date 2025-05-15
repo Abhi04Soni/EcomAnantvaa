@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from "react";
-import { ArrowLeft , ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import image1 from "../assets/image1.jpg";
 
 const Carousel = () => {
   const carouselRef = useRef(null);
@@ -7,9 +8,9 @@ const Carousel = () => {
 
 
   const images = [
-    "../assets/logoAnantvaa.jpg",
-    "../assets/logoAnantvaa.jpg",
-    "../assets/logoAnantvaa.jpg",
+    image1,
+    image1,
+    image1,
   ];
   const totalSlides = images.length; 
   const updateCarousel = (index) => {
@@ -42,7 +43,7 @@ const Carousel = () => {
   }, [currentIndex]);
 
   return (
-    <div className="relative w-full max-w-5xl mx-auto overflow-hidden rounded-2xl shadow-lg">
+    <div className="relative w-screen mx-auto overflow-hidden shadow-lg hover:shadow-2xl h-[80vh] sm:h-[60vh] md:h-[70vh]">
       <div
         ref={carouselRef}
         className="flex transition-transform duration-700 ease-in-out"
@@ -53,7 +54,7 @@ const Carousel = () => {
             key={idx}
             src={src}
             alt={`Slide ${idx + 1}`}
-            className="w-full flex-shrink-0 object-cover h-64"
+            className="w-full flex-shrink-0 object-coverhover:shadow-2xl h-[80vh] sm:h-[60vh] md:h-[70vh]"
           />
         ))}
       </div>

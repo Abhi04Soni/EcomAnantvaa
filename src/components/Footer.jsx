@@ -16,7 +16,7 @@ const Footer = () => {
         </div>
 
         <div className="text-center md:text-right space-y-1 md:space-y-0 md:space-x-4">
-          <p>© 2025, Pehrin — Powered by Shopify</p>
+          <p>© 2025, Anantvaa </p>
           <a href="#" className="hover:underline">Refund policy</a>
           <span className="hidden md:inline">·</span>
           <a href="#" className="hover:underline">Terms of service</a>
