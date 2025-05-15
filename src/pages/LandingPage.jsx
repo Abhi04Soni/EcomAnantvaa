@@ -12,8 +12,6 @@ const LandingPage = () => {
       <Carousel />
       <NewArrivalsCarousel />
       <Carousel />
-
-      
       <Footer />
       
       {/* Landing Page

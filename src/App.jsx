@@ -3,6 +3,7 @@ import Signup from '../src/pages/Signup'
 import LoginPage from '../src/pages/Login'
 import LandingPage from './pages/LandingPage'
 import Story from './pages/Story'
+import Cart from './pages/Cart'
 import { BrowserRouter, Route , Router, Routes } from 'react-router-dom'
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
             <Route path="/login" element={<LoginPage/>}/>
           <Route path="/signup" element={<Signup />} />
           <Route path="/story" element={<Story />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
       </BrowserRouter>
     </div>
