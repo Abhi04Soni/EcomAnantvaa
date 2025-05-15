@@ -6,6 +6,7 @@ import Story from './pages/Story'
 import Cart from './pages/Cart'
 import { BrowserRouter, Route , Router, Routes } from 'react-router-dom'
 import Products from './pages/Products'
+import ViewProduct from './pages/ViewProduct'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/story" element={<Story />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/products" element={<Products />} />
+          <Route path="/view-product" element={<ViewProduct/>}/>
         </Routes>
       </BrowserRouter>
     </div>
