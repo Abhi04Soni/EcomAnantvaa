@@ -10,6 +10,7 @@ const ViewProduct = () => {
   const [quantity, setQuantity] = useState(1)
   const [size, setSize] = useState('M')
   const sizes = ['XS', 'S', 'M', 'L', 'XL', '2XL']
+  const productId = product?.id
 
   const { id } = useParams()
 
@@ -31,47 +32,96 @@ const ViewProduct = () => {
     fetchProduct()
   }, [id])
 
-  async function handleAddToCart(event) {
-    event.preventDefault()
-    // implement your cart logic
-    console.log('Added to cart:', { productId: product.id, quantity, size })
+  const handleAddToCart = async (product, quantity, size) => {
+    const { data: userData, error: userError } = await supabase.auth.getUser()
+    const userId = userData?.user?.id
+
+    if (!userId) {
+      alert('Please log in to add items to your cart.')
+      return
+    }
+
+    // Check if this product already exists in cart for this user
+    const { data: existingItem, error: fetchError } = await supabase
+      .from('cart')
+      .select('*')
+      .eq('userId', userId)
+      .eq('productId', product.id)
+      .eq('Quantity', quantity)
+      .eq('Size', size)
+      .single()
+
+    if (fetchError && fetchError.code !== 'PGRST116') {
+      console.error(fetchError)
+      return
+    }
+
+    if (existingItem) {
+      // If product already in cart with same size, update quantity
+      const { error: updateError } = await supabase
+        .from('Cart')
+        .update({ Quantity: existingItem.Quantity + quantity })
+        .eq('userId', userId)
+        .eq('productId', product.id)
+        .eq('Size', size)
+
+      if (updateError) {
+        console.error(updateError)
+      } else {
+        alert('Cart updated successfully!')
+      }
+    } else {
+      const { error: insertError } = await supabase.from('Cart').insert([
+        {
+          userId: userId,
+          productId: product.id,
+          Quantity: quantity,
+          Size: size
+        }
+      ])
+
+      if (insertError) {
+        console.error(insertError)
+      } else {
+        alert('Added to cart!')
+      }
+    }
   }
 
-  if (!product) return <p className="p-8 text-center">Loading...</p>
+  if (!product) return <p className='p-8 text-center'>Loading...</p>
 
   return (
     <>
       <Navbar />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-8 max-w-7xl mx-auto">
-        {/* Product Image */}
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-8 p-8 max-w-7xl mx-auto'>
         <img
           src={product.image_url || image}
           alt={product.name}
-          className="rounded-xl shadow-md object-cover w-full max-h-[90vh]"
+          className='rounded-xl shadow-md object-cover w-full max-h-[90vh]'
         />
 
         {/* Product Details */}
         <div>
-          <h1 className="text-3xl font-bold mb-2 text-black">{product.name}</h1>
-          <div className="flex items-center gap-4 mb-2">
-            <span className="line-through text-gray-500">
+          <h1 className='text-3xl font-bold mb-2 text-black'>{product.name}</h1>
+          <div className='flex items-center gap-4 mb-2'>
+            <span className='line-through text-gray-500'>
               Rs. {product.original_price?.toFixed(2)}
             </span>
-            <span className="text-xl font-semibold text-red-600">
+            <span className='text-xl font-semibold text-red-600'>
               Rs. {product.sale_price?.toFixed(2)}
             </span>
-            <span className="text-sm bg-red-100 text-red-600 px-2 py-1 rounded-full">
+            <span className='text-sm bg-red-100 text-red-600 px-2 py-1 rounded-full'>
               Sale
             </span>
           </div>
 
-          <p className="text-sm text-gray-600 mb-4">Taxes included.</p>
+          <p className='text-sm text-gray-600 mb-4'>Taxes included.</p>
 
           {/* Size Options */}
-          <div className="mb-4">
-            <p className="mb-2 underline text-sm cursor-pointer">Size Chart</p>
-            <div className="flex gap-2 flex-wrap">
-              {sizes.map((s) => (
+          <div className='mb-4'>
+            <p className='mb-2 underline text-sm cursor-pointer'>Size Chart</p>
+            <div className='flex gap-2 flex-wrap'>
+              {sizes.map(s => (
                 <button
                   key={s}
                   onClick={() => setSize(s)}
@@ -88,42 +138,42 @@ const ViewProduct = () => {
           </div>
 
           {/* Quantity Selector */}
-          <div className="flex items-center gap-4 mb-6">
+          <div className='flex items-center gap-4 mb-6 text-black'>
             <button
               onClick={() => setQuantity(Math.max(1, quantity - 1))}
-              className="border w-8 h-8 flex items-center justify-center"
+              className='border w-8 h-8 flex items-center justify-center'
             >
               –
             </button>
             <span>{quantity}</span>
             <button
               onClick={() => setQuantity(quantity + 1)}
-              className="border w-8 h-8 flex items-center justify-center"
+              className='border w-8 h-8 flex items-center justify-center'
             >
               +
             </button>
           </div>
 
           {/* Actions */}
-          <div className="flex flex-col gap-4">
+          <div className='flex flex-col gap-4'>
             <button
-              className="w-full border border-black py-2 hover:bg-gray-100"
-              onClick={handleAddToCart}
+              className='w-full border border-black py-2 hover:bg-gray-100'
+              onClick={() => handleAddToCart(productId, quantity, size)}
             >
               Add to cart
             </button>
-            <button className="w-full bg-black text-white py-2 hover:bg-gray-800">
+            <button className='w-full bg-black text-white py-2 hover:bg-gray-800'>
               Buy it now
             </button>
           </div>
 
           {/* Description */}
-          <p className="mt-6 text-gray-700 text-sm">
+          <p className='mt-6 text-gray-700 text-sm'>
             {product.description || 'No description available.'}
           </p>
 
           {/* Share */}
-          <div className="mt-4 text-sm underline text-gray-500 cursor-pointer">
+          <div className='mt-4 text-sm underline text-gray-500 cursor-pointer'>
             Share
           </div>
         </div>
