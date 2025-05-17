@@ -1,8 +1,25 @@
+import React, { useEffect} from 'react'
+
 const ProfileSettings = () => {
+
+      const getUser = async () => {
+        const {
+          data: { user },
+          error
+        } = await supabase.auth.getUser()
+        if (!error) {
+          console.log(user)
+        }
+      }
+    
+      useEffect(() => {
+        getUser()
+      }, [])
+    
     return (
-      <div className="bg-white p-6 rounded-lg shadow-md">
+      <div className="bg-white p-6 rounded-lg shadow-md ">
         <h2 className="text-2xl font-bold mb-4 text-[rgb(82,52,26)]">Profile Settings</h2>
-        <form className="space-y-4">
+        <form className="space-y-4 text-black">
           <input
             type="text"
             placeholder="Full Name"

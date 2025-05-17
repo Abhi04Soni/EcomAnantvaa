@@ -8,7 +8,7 @@ import Profile from '../components/Profile'
 import Navbar from '../components/Navbar'
 
 const UserPanel = () => {
-  const [activeSection, setActiveSection] = useState('dashboard')
+  const [activeSection, setActiveSection] = useState('profile')
   const [user, setUser] = useState(null)
 
   useEffect(() => {

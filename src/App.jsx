@@ -58,7 +58,9 @@ function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/view-product" element={<ViewProduct />} />
           <Route path="/refund-policy" element={<RefundPolicy />} />
-          <Route path="/user-panel" element={<UserPanel/>}/>
+          <Route path="/user-panel" element={<UserPanel />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/add-product" element={<AddProduct/>}/>
         </Routes>
       </BrowserRouter>
     </div>

@@ -61,12 +61,12 @@ const Navbar = () => {
               >
                 Products
               </Link>
-              <Link
+              {/* <Link
                 to='/categories'
                 className='text-gray-700 hover:text-indigo-600'
               >
                 Category
-              </Link>
+              </Link> */}
               <Link to='/story' className='text-gray-700 hover:text-indigo-600'>
                 Story
               </Link>
