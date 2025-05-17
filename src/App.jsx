@@ -9,6 +9,7 @@ import Products from './pages/Products'
 import ViewProduct from './pages/ViewProduct'
 import RefundPolicy from './pages/RefundPolicy'
 import { supabase } from './utils/SupabaseClient'
+import UserPanel from './pages/UserPanel'
 
 
 
@@ -54,7 +55,8 @@ function App() {
               </ProtectedRoute>} />
           <Route path="/products" element={<Products />} />
           <Route path="/view-product" element={<ViewProduct />} />
-          <Route path="/refund-policy" element={<RefundPolicy/>}/>
+          <Route path="/refund-policy" element={<RefundPolicy />} />
+          <Route path="/user-panel" element={<UserPanel/>}/>
         </Routes>
       </BrowserRouter>
     </div>
