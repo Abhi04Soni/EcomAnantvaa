@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { supabase } from '../utils/SupabaseClient'
+import background from '../assets/background.jpg'
 
 const Signup = () => {
   const [form, setForm] = useState({
@@ -37,16 +38,16 @@ const Signup = () => {
   }
 
   return (
-    <div className="flex items-center justify-center w-screen min-h-screen bg-gray-900 p-5px">
+    <div className="flex items-center justify-center w-screen min-h-screen p-5px" style={{ backgroundImage: `url(${background})` }}>
       <div className=" bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold mb-6 text-center text-black">Sign up</h1>
-        <form onSubmit={handleSignup} className="space-y-4 bg-yellow-500">
+        <h1 className="text-3xl font-bold mb-6 text-center text-black  poetsen-one-regular">Sign up</h1>
+        <form onSubmit={handleSignup} className="space-y-4">
           <div className="flex gap-4">
             <input
               type="text"
               name="firstName"
               placeholder="First name*"
-              className="rounded-md p-[10px]"
+              className="border border-gray-700 rounded-md p-[10px] text-[rgb(82,52,26)]"
               required
               onChange={handleChange}
             />
@@ -54,7 +55,7 @@ const Signup = () => {
               type="text"
               name="lastName"
               placeholder="Last name*"
-              className="rounded-md p-[10px] pl-[5px]"
+              className="border border-gray-700 rounded-md p-[10px] text-[rgb(82,52,26)]"
               required
               onChange={handleChange}
             />
@@ -63,7 +64,7 @@ const Signup = () => {
             type="email"
             name="email"
             placeholder="E-mail*"
-            className="border w-full rounded p-[10px]"
+            className="border w-full rounded p-[10px] border-gray-700 text-[rgb(82,52,26)]"
             required
             onChange={handleChange}
           />
@@ -71,7 +72,7 @@ const Signup = () => {
             type="password"
             name="password"
             placeholder="Create password*"
-            className="border w-full rounded p-[10px]"
+            className="border w-full rounded p-[10px] border-gray-700 text-[rgb(82,52,26)]"
             required
             onChange={handleChange}
             minLength={8}
@@ -86,7 +87,7 @@ const Signup = () => {
             Sign up
           </button>
           {message && <p className="text-sm text-red-600">{message}</p>}
-          <p className="text-sm mt-2 text-center">
+          <p className="text-sm mt-2 text-center text-black">
             Already a member?{' '}
             <a href="/login" className="underline text-blue-600">
               Login

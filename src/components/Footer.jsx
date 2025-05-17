@@ -1,8 +1,10 @@
-import { Instagram , MessageCircleHeart  } from "lucide-react";
+import { Instagram, MessageCircleHeart } from "lucide-react";
+import { Link } from "react-router-dom";
+import background from '../assets/background.jpg'
 
 const Footer = () => {
   return (
-    <footer className="bg-[#FBEEDC] text-[#6B3E26] text-sm w-full border-t border-[#D9BFA6] mt-auto">
+    <footer className=" text-sm w-full border-t mt-auto " style={{ backgroundImage: `url(${background})` }}>
       <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
         
         {/* Social Icons */}
@@ -17,7 +19,7 @@ const Footer = () => {
 
         <div className="text-center md:text-right space-y-1 md:space-y-0 md:space-x-4">
           <p>© 2025, Anantvaa </p>
-          <a href="#" className="hover:underline">Refund policy</a>
+          <Link to="/refund-policy" className="hover:underline">Refund policy</Link>
           <span className="hidden md:inline">·</span>
           <a href="#" className="hover:underline">Terms of service</a>
           <span className="hidden md:inline">·</span>

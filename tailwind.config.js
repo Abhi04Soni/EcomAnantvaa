@@ -9,7 +9,13 @@ export default {
       colors: {
         'custom-beige': '#EFD7A7',
       },
+      fontFamily: {
+        poetsen: ['"Poetsen One"', 'sans-serif'],
+      },
     },
   },
   plugins: []
 }
+
+
+
