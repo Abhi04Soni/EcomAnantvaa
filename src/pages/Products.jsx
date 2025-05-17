@@ -2,6 +2,7 @@ import React from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import ProductCard from '../components/ProductCard'
+import image1 from '../assets/image1.jpg'
 
 export default function Products () {
   return (
@@ -10,7 +11,7 @@ export default function Products () {
       <ProductCard
         product={{
           name: "Blue halter neck top",
-          imageUrl: "/blue-top.jpg", // place this image in `public/`
+          imageUrl: image1,
           originalPrice: 999,
           salePrice: 499,
           isSoldOut: false,

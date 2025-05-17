@@ -56,7 +56,7 @@ function App() {
                 <Cart />
               </ProtectedRoute>} />
           <Route path="/products" element={<Products />} />
-          <Route path="/view-product" element={<ViewProduct />} />
+          <Route path="/product/:id" element={<ViewProduct />} />
           <Route path="/refund-policy" element={<RefundPolicy />} />
           <Route path="/user-panel" element={<UserPanel />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
