@@ -59,7 +59,7 @@ const AdminDashboard = () => {
                 <tr key={prod.id} className="text-center hover:bg-gray-50 transition">
                   <td className="px-3 py-2 border">
                     <img
-                      src={prod.image_url}
+                      src={JSON.parse(prod.image_url)[0]}
                       alt={prod.name}
                       className="h-16 w-16 object-cover mx-auto rounded-md"
                     />
