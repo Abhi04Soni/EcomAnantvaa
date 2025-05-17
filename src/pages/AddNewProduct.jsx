@@ -26,7 +26,6 @@ const AddProduct = () => {
 
   const [files, setFiles] = useState([]);
   const [previews, setPreviews] = useState([]);
-  const [uploadedUrls, setUploadedUrls] = useState([]);
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -72,23 +71,19 @@ const AddProduct = () => {
       urls.push(data.publicUrl);
     }
 
-    setUploadedUrls(urls);
     setFiles([]);
     setPreviews([]);
+    return urls;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await uploadImages();
-    const updatedForm = { ...form, image_url: JSON.stringify(uploadedUrls) };
+    const urls = await uploadImages();
+    const updatedForm = { ...form, image_url: JSON.stringify(urls) };
     const { error } = await supabase.from("Products").insert([updatedForm]);
     if (!error) navigate("/admin/dashboard");
     else alert("Failed to add product");
   };
-
-  useEffect(() => {
-    console.log("Uploaded URLs updated:", uploadedUrls);
-  }, [uploadedUrls]);
 
   return (
     <div className=" py-10 text-black px-4 bg-[rgb(239,215,167)] w-full mx-auto flex flex-col items-center">
