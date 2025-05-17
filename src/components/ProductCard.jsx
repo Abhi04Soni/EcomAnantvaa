@@ -1,7 +1,9 @@
 import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import { supabase } from '../utils/SupabaseClient';
 
 const ProductCard = ({ product }) => {
+  if (!product) return null;
   const { name, image_url, original_price, sale_price, is_sold_out } = product
   const navigate = useNavigate();
   const handleAddToCart = () => {
@@ -21,15 +23,9 @@ const handleBuyNow = () => {
         </div>
       )}
 
-    {/* Product Image */}
-    <img
-      src={image_url}
-      alt={name}
-      className='rounded-md mb-4 object-cover w-full h-80'
-    />
       {/* Product Image */}
       <img
-        src={JSON.parse(image_url)[0]}
+        src= {typeof image_url === 'string' ? JSON.parse(image_url) : 'N/A'} // image_url{JSON.parse(image_url)}
         alt={name}
         className='rounded-md mb-4 object-cover w-full h-80'
       />

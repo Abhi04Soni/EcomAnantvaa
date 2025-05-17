@@ -1,21 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState} from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import ProductCard from '../components/ProductCard'
-import image1 from '../assets/image1.jpg'
+import { supabase } from '../utils/SupabaseClient'
 
-export default function Products () {
+export default function Products() {
+  const [product, setProduct] = useState(null)
+  const fetchProduct = async () => {
+        const { data, error } = await supabase
+          .from('Products')
+          .select('*')
+  
+        if (!error) {
+          setProduct(data)
+        } else {
+          console.error(error)
+        }
+  }
+  
+  useEffect(() => {
+    fetchProduct()
+  },[])
   return (
     <>
       <Navbar />
-      <ProductCard
-        product={{
-          name: "Blue halter neck top",
-          imageUrl: image1,
-          originalPrice: 999,
-          salePrice: 499,
-          isSoldOut: false,
-        }}
+      <ProductCard product ={product}
       />
       <Footer />
     </>
